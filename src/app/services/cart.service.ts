@@ -28,6 +28,7 @@ export class CartService {
 
   changeQuantity(foodId: string, quantity: number) {
     let cartItem = this.cart.items.find((item) => item.food.id === foodId);
+    // console.log(cartItem);
     if (!cartItem) return;
     cartItem.quantity = quantity;
     cartItem.price = quantity * cartItem.food.price;
