@@ -18,11 +18,16 @@ export class HomeComponent implements OnInit {
     this.foods = this.foodService.getAll();
     activatedRoute.params.subscribe((params) => {
       // "noPropertyAccessFromIndexSignature": false, in tsconfig.json file okkk!!!.. for params.searchTerm
-      if (params['searchTerm'].length>0) {
+      if (params['searchTerm']) {
         this.foods = this.foodService.getAllFoodsBySearchTerm(
           params['searchTerm']
         );
-      } else {
+      } 
+      else if (params['tag']) {
+        console.log(params['tag']);
+        this.foods = this.foodService.getAllFoodsByTag(params['tag']);
+      }
+      else {
         this.foods = this.foodService.getAll();
       }
     });
